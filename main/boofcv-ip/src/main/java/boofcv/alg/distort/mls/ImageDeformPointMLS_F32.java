@@ -88,8 +88,7 @@ public class ImageDeformPointMLS_F32 implements Point2Transform2_F32 {
 	Point2D_F32 aveP = new Point2D_F32();  // average control point for given weights
 	Point2D_F32 aveQ = new Point2D_F32();  // average distorted point for given weights
 	float totalWeight;
-	// mu for simularity
-	float mu;
+	float mu;                              // mu for simularity
 
 	public ImageDeformPointMLS_F32( TypeDeformMLS type ) {
 		switch( type ) {
