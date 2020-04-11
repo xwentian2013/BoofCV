@@ -50,8 +50,7 @@ public class BMemoryImageDeformPointMLS {
 
 				alg.add(sx,sy,dx,dy);
 			}
-			alg.fixateUndistorted();
-			alg.fixateDistorted();
+			alg.fixate();
 
 			Point2D_F32 out = new Point2D_F32();
 			for (int y = 0; y < size; y++) {
