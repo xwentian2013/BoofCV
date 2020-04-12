@@ -65,10 +65,10 @@ public class SelectRandomFeatures implements FeatureMaxSelector {
 
 		// randomly select points up to the limit
 		for (int i = 0; i < limit; i++) {
-			int idx = rand.nextInt(limit-i);
+			int idx = rand.nextInt(indexes.size-i);
 			selected.grow().set( detected.data[ indexes.data[idx] ]);
 			// copy an unused value over the used value
-			indexes.data[idx] = indexes.data[limit-i-1];
+			indexes.data[idx] = indexes.data[indexes.size-i-1];
 		}
 	}
 }

@@ -18,10 +18,7 @@
 
 package boofcv.factory.feature.detect.selector;
 
-import boofcv.alg.feature.detect.selector.FeatureMaxSelector;
-import boofcv.alg.feature.detect.selector.SelectNBestFeatures;
-import boofcv.alg.feature.detect.selector.SelectRandomFeatures;
-import boofcv.alg.feature.detect.selector.SelectUniformBestFeatures;
+import boofcv.alg.feature.detect.selector.*;
 
 import javax.annotation.Nullable;
 
@@ -38,6 +35,7 @@ public class FactoryMaxSelector {
 			case BEST_N: return new SelectNBestFeatures();
 			case RANDOM: return new SelectRandomFeatures(config.randomSeed);
 			case UNIFORM_BEST: return new SelectUniformBestFeatures();
+			case FIRST: return new SelectFirstFeatures();
 		}
 		throw new RuntimeException("Unknown type "+config.type);
 	}

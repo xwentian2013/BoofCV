@@ -38,5 +38,9 @@ public enum MaxSelectorTypes {
 	/**
 	 * @see boofcv.alg.feature.detect.selector.SelectRandomFeatures
 	 */
-	RANDOM
+	RANDOM,
+	/**
+	 * @see boofcv.alg.feature.detect.selector.SelectFirstFeatures
+	 */
+	FIRST
 }
