@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Attempts to select features uniformally across the image with a preference for locally more intense features. This
+ * Attempts to select features uniformly across the image with a preference for locally more intense features. This
  * is done by breaking the image up into a grid. Then features are added by selecting the most intense feature from
  * each grid. If a cell has a prior feature in it then it is skipped for that iteration and the prior counter is
  * decremented. This is repeated until the limit has been reached or there are no more features to add.
@@ -43,7 +43,7 @@ import java.util.List;
  */
 public class SelectUniformBestFeatures implements FeatureMaxSelector {
 
-	/** Configuration for uniformally selecting a grid */
+	/** Configuration for uniformly selecting a grid */
 	public ConfigGridUniform configUniform = new ConfigGridUniform();
 
 	// Grid for storing a set of objects
@@ -153,9 +153,14 @@ public class SelectUniformBestFeatures implements FeatureMaxSelector {
 		}
 	}
 
+	/**
+	 * Info for each cell
+	 */
 	public static class Info
 	{
+		// Number of features in the cell from the prior list
 		int priorCount = 0;
+		// Sorted list of detected features by intensity
 		List<Point2D_I16> detected = new ArrayList<>();
 		public void reset() {
 			priorCount = 0;

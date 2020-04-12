@@ -28,7 +28,8 @@ import org.ddogleg.struct.GrowQueue_I32;
 import java.util.Random;
 
 /**
- * Randomly selects features up to the limit from the set of detected
+ * Randomly selects features up to the limit from the set of detected. This is actually not as bad of an approach
+ * as it might seem. Could be viewed as a less effective version of {@link SelectUniformBestFeatures}.
  *
  * @author Peter Abeles
  */

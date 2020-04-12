@@ -35,7 +35,7 @@ public class SelectNBestFeatures implements FeatureMaxSelector {
 
 	// list of the found best corners
 	int[] indexes = new int[1];
-	float[] inten = new float[1];
+	float[] indexIntensity = new float[1];
 
 	@Override
 	public void select(GrayF32 intensity , boolean positive, FastAccess<Point2D_I16> prior,
@@ -52,7 +52,7 @@ public class SelectNBestFeatures implements FeatureMaxSelector {
 		// grow internal data structures
 		if( detected.size > indexes.length ) {
 			indexes = new int[detected.size];
-			inten = new float[detected.size];
+			indexIntensity = new float[detected.size];
 		}
 
 		// extract the intensities for each corner
@@ -63,16 +63,16 @@ public class SelectNBestFeatures implements FeatureMaxSelector {
 				Point2D_I16 pt = points[i];
 				// quick select selects the k smallest
 				// I want the k-biggest so the negative is used
-				inten[i] = -intensity.get(pt.x, pt.y);
+				indexIntensity[i] = -intensity.get(pt.x, pt.y);
 			}
 		} else {
 			for (int i = 0; i < detected.size; i++) {
 				Point2D_I16 pt = points[i];
-				inten[i] = intensity.get(pt.x, pt.y);
+				indexIntensity[i] = intensity.get(pt.x, pt.y);
 			}
 		}
 
-		QuickSelect.selectIndex(inten,limit,detected.size,indexes);
+		QuickSelect.selectIndex(indexIntensity,limit,detected.size,indexes);
 
 		for (int i = 0; i < limit; i++) {
 			selected.grow().set(detected.data[indexes[i]]);
