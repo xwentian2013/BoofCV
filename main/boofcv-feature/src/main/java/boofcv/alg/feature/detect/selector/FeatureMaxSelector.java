@@ -23,6 +23,8 @@ import georegression.struct.point.Point2D_I16;
 import org.ddogleg.struct.FastAccess;
 import org.ddogleg.struct.FastQueue;
 
+import javax.annotation.Nullable;
+
 /**
  * Resolves ambiguity when the requested number of features is exceeded by the actual number of features detected
  * inside the intensity image.
@@ -31,7 +33,10 @@ import org.ddogleg.struct.FastQueue;
  */
 public interface FeatureMaxSelector {
 	/**
-	 * Selects features using a rule given the limit on detection objects.
+	 * Selects features using a rule given the limit on detection objects. If the limit is higher than the number
+	 * of detected features and prior is null then the detected features should be copied into selected. How
+	 * prior features are used is dependent upon the implementation and their affect isn't specified in general.
+	 *
 	 * @param intensity (Input) Intensity image
 	 * @param positive (Input) true if better features have more positive values, false if it's more negative values
 	 * @param prior (Input) Locations of previously detected features
@@ -39,6 +44,6 @@ public interface FeatureMaxSelector {
 	 * @param limit (Input) The maximum number of new features detected
 	 * @param selected (Output) Selected features. Element count not exceed the limit. Reset on every call.
 	 */
-	void select(GrayF32 intensity , boolean positive, FastAccess<Point2D_I16> prior,
+	void select(GrayF32 intensity , boolean positive, @Nullable FastAccess<Point2D_I16> prior,
 				FastAccess<Point2D_I16> detected, int limit , FastQueue<Point2D_I16> selected );
 }
