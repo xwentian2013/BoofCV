@@ -18,6 +18,8 @@
 
 package boofcv.misc;
 
+import java.util.List;
+
 /**
  * Set of commonly used functions for Lambdas
  *
@@ -38,5 +40,9 @@ public interface BoofLambdas {
 
 	interface ProcessII {
 		void process( int a, int b );
+	}
+
+	interface SelectElement<T> {
+		int select(List<T> list);
 	}
 }

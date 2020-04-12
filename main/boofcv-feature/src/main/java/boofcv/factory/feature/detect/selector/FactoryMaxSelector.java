@@ -36,7 +36,7 @@ public class FactoryMaxSelector {
 			config = new ConfigMaxSelector();
 		switch( config.type ) {
 			case BEST_N: return new SelectNBestFeatures();
-			case RANDOM: return new SelectRandomFeatures();
+			case RANDOM: return new SelectRandomFeatures(config.randomSeed);
 			case UNIFORM_BEST: return new SelectUniformBestFeatures();
 		}
 		throw new RuntimeException("Unknown type "+config.type);

@@ -18,19 +18,57 @@
 
 package boofcv.alg.feature.detect.selector;
 
+import boofcv.misc.BoofMiscOps;
 import boofcv.struct.image.GrayF32;
 import georegression.struct.point.Point2D_I16;
 import org.ddogleg.struct.FastAccess;
 import org.ddogleg.struct.FastQueue;
+import org.ddogleg.struct.GrowQueue_I32;
+
+import java.util.Random;
 
 /**
+ * Randomly selects features up to the limit from the set of detected
+ *
  * @author Peter Abeles
  */
 public class SelectRandomFeatures implements FeatureMaxSelector {
+
+	// Random number generator used to select points
+	final Random rand;
+
+	// Work space
+	private GrowQueue_I32 indexes = new GrowQueue_I32();
+
+	public SelectRandomFeatures( long seed ) {
+		rand = new Random(seed);
+	}
+
 	@Override
 	public void select(GrayF32 intensity, boolean positive,
 					   FastAccess<Point2D_I16> prior, FastAccess<Point2D_I16> detected, int limit,
-					   FastQueue<Point2D_I16> selected) {
+					   FastQueue<Point2D_I16> selected)
+	{
+		selected.reset();
 
+		// the limit is more than the total number of features. Return them all!
+		if( detected.size <= limit ) {
+			BoofMiscOps.copyAll_2D_I16(detected,selected);
+			return;
+		}
+
+		// Create an array with a sequence of numbers
+		indexes.resize(detected.size);
+		for (int i = 0; i < detected.size; i++) {
+			indexes.data[i] = i;
+		}
+
+		// randomly select points up to the limit
+		for (int i = 0; i < limit; i++) {
+			int idx = rand.nextInt(limit-i);
+			selected.grow().set( detected.data[ indexes.data[idx] ]);
+			// copy an unused value over the used value
+			indexes.data[idx] = indexes.data[limit-i-1];
+		}
 	}
 }

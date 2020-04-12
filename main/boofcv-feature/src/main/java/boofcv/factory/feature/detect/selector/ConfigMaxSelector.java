@@ -18,6 +18,7 @@
 
 package boofcv.factory.feature.detect.selector;
 
+import boofcv.struct.ConfigGridUniform;
 import boofcv.struct.Configuration;
 
 /**
@@ -26,19 +27,23 @@ import boofcv.struct.Configuration;
  * @author Peter Abeles
  */
 public class ConfigMaxSelector implements Configuration {
+	/** Specified which selector to use */
 	public MaxSelectorTypes type = MaxSelectorTypes.BEST_N;
 
+	/**
+	 *  Random seed used by RANDOM selector
+	 */
 	public long randomSeed = 0xDEADBEEF;
 
-	public double inverseRegionScale = 0.5;
+	/** Configuration used by Uniform selector */
+	public ConfigGridUniform uniform = new ConfigGridUniform();
 
 	public ConfigMaxSelector() {
 	}
 
-	public ConfigMaxSelector(MaxSelectorTypes type, long randomSeed, double inverseRegionScale) {
+	public ConfigMaxSelector(MaxSelectorTypes type, long randomSeed) {
 		this.type = type;
 		this.randomSeed = randomSeed;
-		this.inverseRegionScale = inverseRegionScale;
 	}
 
 	@Override
@@ -47,14 +52,16 @@ public class ConfigMaxSelector implements Configuration {
 	}
 
 	public static ConfigMaxSelector selectBestN() {
-		return new ConfigMaxSelector(MaxSelectorTypes.BEST_N,-1,-1);
+		return new ConfigMaxSelector(MaxSelectorTypes.BEST_N,-1);
 	}
 
 	public static ConfigMaxSelector selectRandom(long seed) {
-		return new ConfigMaxSelector(MaxSelectorTypes.RANDOM,seed,-1);
+		return new ConfigMaxSelector(MaxSelectorTypes.RANDOM,seed);
 	}
 
 	public static ConfigMaxSelector selectUniform(double inverseRegionScale) {
-		return new ConfigMaxSelector(MaxSelectorTypes.UNIFORM_BEST,-1,inverseRegionScale);
+		ConfigMaxSelector config = new ConfigMaxSelector(MaxSelectorTypes.UNIFORM_BEST,-1);
+		config.uniform.inverseRegionScale = inverseRegionScale;
+		return config;
 	}
 }
