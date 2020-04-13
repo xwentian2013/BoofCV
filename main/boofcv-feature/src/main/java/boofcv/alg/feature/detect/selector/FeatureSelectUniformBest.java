@@ -41,7 +41,7 @@ import java.util.List;
  *
  * @author Peter Abeles
  */
-public class SelectUniformBestFeatures implements FeatureMaxSelector {
+public class FeatureSelectUniformBest implements FeatureSelectLimit {
 
 	/** Configuration for uniformly selecting a grid */
 	public ConfigGridUniform configUniform = new ConfigGridUniform();

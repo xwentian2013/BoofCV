@@ -28,11 +28,11 @@ import static org.junit.jupiter.api.Assertions.fail;
 /**
  * @author Peter Abeles
  */
-class TestSelectUniformBestFeatures extends ChecksFeatureMaxSelector{
+class TestFeatureSelectUniformBest extends ChecksFeatureSelectLimit {
 
 	@Override
-	public SelectUniformBestFeatures createAlgorithm() {
-		return new SelectUniformBestFeatures();
+	public FeatureSelectUniformBest createAlgorithm() {
+		return new FeatureSelectUniformBest();
 	}
 
 	/**
@@ -68,7 +68,7 @@ class TestSelectUniformBestFeatures extends ChecksFeatureMaxSelector{
 		}
 
 		QueueCorner found = new QueueCorner();
-		SelectUniformBestFeatures alg = createAlgorithm();
+		FeatureSelectUniformBest alg = createAlgorithm();
 		// make it easy to know the cell size
 		alg.configUniform = new HackedConfig(cellSize);
 
@@ -98,7 +98,7 @@ class TestSelectUniformBestFeatures extends ChecksFeatureMaxSelector{
 	}
 
 	private void checkSpread(boolean positive,QueueCorner detected, int cellSize,
-							 int cellCount, QueueCorner found, SelectUniformBestFeatures alg)
+							 int cellCount, QueueCorner found, FeatureSelectUniformBest alg)
 	{
 		int limit = cellCount*6;
 		alg.select(intensity,positive,null,detected,limit,found);
@@ -142,7 +142,7 @@ class TestSelectUniformBestFeatures extends ChecksFeatureMaxSelector{
 		}
 
 		QueueCorner found = new QueueCorner();
-		SelectUniformBestFeatures alg = createAlgorithm();
+		FeatureSelectUniformBest alg = createAlgorithm();
 		// make it easy to know the cell size
 		alg.configUniform = new HackedConfig(cellSize);
 
@@ -185,7 +185,7 @@ class TestSelectUniformBestFeatures extends ChecksFeatureMaxSelector{
 		}
 
 		QueueCorner found = new QueueCorner();
-		SelectUniformBestFeatures alg = createAlgorithm();
+		FeatureSelectUniformBest alg = createAlgorithm();
 		// make it easy to know the cell size
 		alg.configUniform = new HackedConfig(cellSize);
 

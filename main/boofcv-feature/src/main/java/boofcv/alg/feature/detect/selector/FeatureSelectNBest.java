@@ -31,7 +31,7 @@ import org.ddogleg.struct.FastQueue;
  *
  * @author Peter Abeles
  */
-public class SelectNBestFeatures implements FeatureMaxSelector {
+public class FeatureSelectNBest implements FeatureSelectLimit {
 
 	// list of the found best corners
 	int[] indexes = new int[1];

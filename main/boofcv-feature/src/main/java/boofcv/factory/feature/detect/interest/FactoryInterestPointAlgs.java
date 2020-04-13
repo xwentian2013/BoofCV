@@ -32,8 +32,8 @@ import boofcv.abst.filter.derivative.AnyImageDerivative;
 import boofcv.alg.feature.detect.intensity.GradientCornerIntensity;
 import boofcv.alg.feature.detect.intensity.HessianBlobIntensity;
 import boofcv.alg.feature.detect.interest.*;
-import boofcv.alg.feature.detect.selector.FeatureMaxSelector;
-import boofcv.alg.feature.detect.selector.SelectNBestFeatures;
+import boofcv.alg.feature.detect.selector.FeatureSelectLimit;
+import boofcv.alg.feature.detect.selector.FeatureSelectNBest;
 import boofcv.alg.filter.derivative.GImageDerivativeOps;
 import boofcv.factory.feature.detect.extract.FactoryFeatureExtractor;
 import boofcv.factory.feature.detect.intensity.FactoryIntensityPointAlg;
@@ -68,7 +68,7 @@ public class FactoryInterestPointAlgs {
 		GeneralFeatureIntensity<T, D> intensity = new WrapperHessianDerivBlobIntensity<>(HessianBlobIntensity.Type.DETERMINANT, derivType);
 		NonMaxSuppression extractor = FactoryFeatureExtractor.nonmax(
 				new ConfigExtract(extractRadius, detectThreshold, extractRadius, true));
-		FeatureMaxSelector selector = new SelectNBestFeatures();
+		FeatureSelectLimit selector = new FeatureSelectNBest();
 		GeneralFeatureDetector<T, D> detector = new GeneralFeatureDetector<>(intensity, extractor, selector);
 		detector.setMaxFeatures(maxFeatures);
 
@@ -97,7 +97,7 @@ public class FactoryInterestPointAlgs {
 		GeneralFeatureIntensity<T, D> intensity = new WrapperGradientCornerIntensity<>(harris);
 		NonMaxSuppression extractor = FactoryFeatureExtractor.nonmax(
 				new ConfigExtract(extractRadius, detectThreshold, extractRadius, true));
-		FeatureMaxSelector selector = new SelectNBestFeatures();
+		FeatureSelectLimit selector = new FeatureSelectNBest();
 		GeneralFeatureDetector<T, D> detector = new GeneralFeatureDetector<>(intensity, extractor, selector);
 		detector.setMaxFeatures(maxFeatures);
 
@@ -125,7 +125,7 @@ public class FactoryInterestPointAlgs {
 		GeneralFeatureIntensity<T, D> intensity = new WrapperHessianDerivBlobIntensity<>(HessianBlobIntensity.Type.DETERMINANT, derivType);
 		NonMaxSuppression extractor = FactoryFeatureExtractor.nonmax(
 				new ConfigExtract(extractRadius, detectThreshold, extractRadius, true));
-		FeatureMaxSelector selector = new SelectNBestFeatures();
+		FeatureSelectLimit selector = new FeatureSelectNBest();
 		GeneralFeatureDetector<T, D> detector = new GeneralFeatureDetector<>(intensity, extractor, selector);
 		detector.setMaxFeatures(maxFeatures);
 
@@ -156,7 +156,7 @@ public class FactoryInterestPointAlgs {
 		GeneralFeatureIntensity<T, D> intensity = new WrapperGradientCornerIntensity<>(harris);
 		NonMaxSuppression extractor = FactoryFeatureExtractor.nonmax(
 				new ConfigExtract(extractRadius, detectThreshold, extractRadius, true));
-		FeatureMaxSelector selector = new SelectNBestFeatures();
+		FeatureSelectLimit selector = new FeatureSelectNBest();
 		GeneralFeatureDetector<T, D> detector = new GeneralFeatureDetector<>(intensity, extractor, selector);
 		detector.setMaxFeatures(maxFeatures);
 

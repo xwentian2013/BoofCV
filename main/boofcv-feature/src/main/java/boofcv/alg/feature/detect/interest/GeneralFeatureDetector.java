@@ -20,7 +20,7 @@ package boofcv.alg.feature.detect.interest;
 
 import boofcv.abst.feature.detect.extract.NonMaxSuppression;
 import boofcv.abst.feature.detect.intensity.GeneralFeatureIntensity;
-import boofcv.alg.feature.detect.selector.FeatureMaxSelector;
+import boofcv.alg.feature.detect.selector.FeatureSelectLimit;
 import boofcv.struct.QueueCorner;
 import boofcv.struct.image.GrayF32;
 import boofcv.struct.image.ImageGray;
@@ -55,7 +55,7 @@ public class GeneralFeatureDetector<I extends ImageGray<I>, D extends ImageGray<
 	protected QueueCorner excludeMinimum;
 
 	// selects the features with the largest intensity
-	protected FeatureMaxSelector selectMax;
+	protected FeatureSelectLimit selectMax;
 	protected QueueCorner selected = new QueueCorner();
 	// maximum number of features it will detect across the image
 	protected int maxFeatures;
@@ -74,7 +74,7 @@ public class GeneralFeatureDetector<I extends ImageGray<I>, D extends ImageGray<
 	 */
 	public GeneralFeatureDetector(GeneralFeatureIntensity<I, D> intensity,
 								  NonMaxSuppression extractor ,
-								  FeatureMaxSelector selectMax) {
+								  FeatureSelectLimit selectMax) {
 		if( extractor.canDetectMinimums() && !intensity.localMinimums() )
 			throw new IllegalArgumentException("Extracting local minimums, but intensity has minimums set to false");
 		if( extractor.canDetectMaximums() && !intensity.localMaximums() )

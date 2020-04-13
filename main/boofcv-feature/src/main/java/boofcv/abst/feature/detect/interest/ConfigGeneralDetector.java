@@ -19,7 +19,7 @@
 package boofcv.abst.feature.detect.interest;
 
 import boofcv.abst.feature.detect.extract.ConfigExtract;
-import boofcv.factory.feature.detect.selector.ConfigMaxSelector;
+import boofcv.factory.feature.detect.selector.ConfigSelectLimit;
 
 /**
  * Configuration for {@link boofcv.alg.feature.detect.interest.GeneralFeatureDetector}.
@@ -36,7 +36,7 @@ public class ConfigGeneralDetector extends ConfigExtract {
 	/**
 	 * Specifies how the features are selected if more than max have been detected
 	 */
-	public ConfigMaxSelector maxSelector = ConfigMaxSelector.selectBestN();
+	public ConfigSelectLimit maxSelector = ConfigSelectLimit.selectBestN();
 
 	public ConfigGeneralDetector(int maxFeatures ,
 								 int radius, float threshold, int ignoreBorder, boolean useStrictRule,

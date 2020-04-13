@@ -29,7 +29,7 @@ import org.ddogleg.struct.FastQueue;
  *
  * @author Peter Abeles
  */
-public class SelectFirstFeatures implements FeatureMaxSelector {
+public class FeatureSelectFirst implements FeatureSelectLimit {
 	@Override
 	public void select(GrayF32 intensity, boolean positive, FastAccess<Point2D_I16> prior,
 					   FastAccess<Point2D_I16> detected, int limit, FastQueue<Point2D_I16> selected)

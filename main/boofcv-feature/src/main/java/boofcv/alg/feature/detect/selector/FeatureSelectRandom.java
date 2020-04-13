@@ -29,11 +29,11 @@ import java.util.Random;
 
 /**
  * Randomly selects features up to the limit from the set of detected. This is actually not as bad of an approach
- * as it might seem. Could be viewed as a less effective version of {@link SelectUniformBestFeatures}.
+ * as it might seem. Could be viewed as a less effective version of {@link FeatureSelectUniformBest}.
  *
  * @author Peter Abeles
  */
-public class SelectRandomFeatures implements FeatureMaxSelector {
+public class FeatureSelectRandom implements FeatureSelectLimit {
 
 	// Random number generator used to select points
 	final Random rand;
@@ -41,7 +41,7 @@ public class SelectRandomFeatures implements FeatureMaxSelector {
 	// Work space
 	private GrowQueue_I32 indexes = new GrowQueue_I32();
 
-	public SelectRandomFeatures( long seed ) {
+	public FeatureSelectRandom(long seed ) {
 		rand = new Random(seed);
 	}
 

@@ -21,8 +21,8 @@ package boofcv.alg.feature.detect.interest;
 import boofcv.abst.feature.detect.extract.ConfigExtract;
 import boofcv.abst.feature.detect.extract.NonMaxSuppression;
 import boofcv.abst.feature.detect.intensity.GeneralFeatureIntensity;
-import boofcv.alg.feature.detect.selector.FeatureMaxSelector;
-import boofcv.alg.feature.detect.selector.SelectNBestFeatures;
+import boofcv.alg.feature.detect.selector.FeatureSelectLimit;
+import boofcv.alg.feature.detect.selector.FeatureSelectNBest;
 import boofcv.factory.feature.detect.extract.FactoryFeatureExtractor;
 import boofcv.struct.QueueCorner;
 import boofcv.struct.image.GrayF32;
@@ -38,7 +38,7 @@ class TestGeneralFeatureDetector {
 
 	int width = 10;
 	int height = 12;
-	FeatureMaxSelector selector = new SelectNBestFeatures();
+	FeatureSelectLimit selector = new FeatureSelectNBest();
 
 	/**
 	 * Several basic detection tests

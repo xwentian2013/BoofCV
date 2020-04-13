@@ -18,29 +18,34 @@
 
 package boofcv.factory.feature.detect.selector;
 
+import boofcv.alg.feature.detect.selector.FeatureSelectFirst;
+import boofcv.alg.feature.detect.selector.FeatureSelectLimit;
+import boofcv.alg.feature.detect.selector.FeatureSelectRandom;
+import boofcv.alg.feature.detect.selector.FeatureSelectUniformBest;
+
 /**
  * Different types of built in methods for enforcing the maximum allowed number of detected features inside
  * an intensity image.
  *
- * @see boofcv.alg.feature.detect.selector.FeatureMaxSelector
+ * @see FeatureSelectLimit
  *
  * @author Peter Abeles
  */
-public enum MaxSelectorTypes {
+public enum SelectLimitTypes {
 	/**
-	 * @see boofcv.alg.feature.detect.selector.SelectUniformBestFeatures
+	 * @see FeatureSelectUniformBest
 	 */
 	BEST_N,
 	/**
-	 * @see boofcv.alg.feature.detect.selector.SelectUniformBestFeatures
+	 * @see FeatureSelectUniformBest
 	 */
 	UNIFORM_BEST,
 	/**
-	 * @see boofcv.alg.feature.detect.selector.SelectRandomFeatures
+	 * @see FeatureSelectRandom
 	 */
 	RANDOM,
 	/**
-	 * @see boofcv.alg.feature.detect.selector.SelectFirstFeatures
+	 * @see FeatureSelectFirst
 	 */
 	FIRST
 }

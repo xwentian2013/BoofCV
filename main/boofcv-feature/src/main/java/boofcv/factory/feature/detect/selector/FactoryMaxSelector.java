@@ -23,19 +23,19 @@ import boofcv.alg.feature.detect.selector.*;
 import javax.annotation.Nullable;
 
 /**
- * Factory that creates {@link FeatureMaxSelector}
+ * Factory that creates {@link FeatureSelectLimit}
  *
  * @author Peter Abeles
  */
 public class FactoryMaxSelector {
-	public static FeatureMaxSelector create( @Nullable ConfigMaxSelector config ) {
+	public static FeatureSelectLimit create(@Nullable ConfigSelectLimit config ) {
 		if( config == null )
-			config = new ConfigMaxSelector();
+			config = new ConfigSelectLimit();
 		switch( config.type ) {
-			case BEST_N: return new SelectNBestFeatures();
-			case RANDOM: return new SelectRandomFeatures(config.randomSeed);
-			case UNIFORM_BEST: return new SelectUniformBestFeatures();
-			case FIRST: return new SelectFirstFeatures();
+			case BEST_N: return new FeatureSelectNBest();
+			case RANDOM: return new FeatureSelectRandom(config.randomSeed);
+			case UNIFORM_BEST: return new FeatureSelectUniformBest();
+			case FIRST: return new FeatureSelectFirst();
 		}
 		throw new RuntimeException("Unknown type "+config.type);
 	}

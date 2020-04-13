@@ -18,17 +18,18 @@
 
 package boofcv.factory.feature.detect.selector;
 
+import boofcv.alg.feature.detect.selector.FeatureSelectLimit;
 import boofcv.struct.ConfigGridUniform;
 import boofcv.struct.Configuration;
 
 /**
- * Configuration for {@link boofcv.alg.feature.detect.selector.FeatureMaxSelector}
+ * Configuration for {@link FeatureSelectLimit}
  *
  * @author Peter Abeles
  */
-public class ConfigMaxSelector implements Configuration {
+public class ConfigSelectLimit implements Configuration {
 	/** Specified which selector to use */
-	public MaxSelectorTypes type = MaxSelectorTypes.BEST_N;
+	public SelectLimitTypes type = SelectLimitTypes.BEST_N;
 
 	/**
 	 *  Random seed used by RANDOM selector
@@ -38,10 +39,10 @@ public class ConfigMaxSelector implements Configuration {
 	/** Configuration used by Uniform selector */
 	public ConfigGridUniform uniform = new ConfigGridUniform();
 
-	public ConfigMaxSelector() {
+	public ConfigSelectLimit() {
 	}
 
-	public ConfigMaxSelector(MaxSelectorTypes type, long randomSeed) {
+	public ConfigSelectLimit(SelectLimitTypes type, long randomSeed) {
 		this.type = type;
 		this.randomSeed = randomSeed;
 	}
@@ -51,16 +52,16 @@ public class ConfigMaxSelector implements Configuration {
 
 	}
 
-	public static ConfigMaxSelector selectBestN() {
-		return new ConfigMaxSelector(MaxSelectorTypes.BEST_N,-1);
+	public static ConfigSelectLimit selectBestN() {
+		return new ConfigSelectLimit(SelectLimitTypes.BEST_N,-1);
 	}
 
-	public static ConfigMaxSelector selectRandom(long seed) {
-		return new ConfigMaxSelector(MaxSelectorTypes.RANDOM,seed);
+	public static ConfigSelectLimit selectRandom(long seed) {
+		return new ConfigSelectLimit(SelectLimitTypes.RANDOM,seed);
 	}
 
-	public static ConfigMaxSelector selectUniform(double inverseRegionScale) {
-		ConfigMaxSelector config = new ConfigMaxSelector(MaxSelectorTypes.UNIFORM_BEST,-1);
+	public static ConfigSelectLimit selectUniform(double inverseRegionScale) {
+		ConfigSelectLimit config = new ConfigSelectLimit(SelectLimitTypes.UNIFORM_BEST,-1);
 		config.uniform.inverseRegionScale = inverseRegionScale;
 		return config;
 	}

@@ -22,7 +22,7 @@ import boofcv.abst.feature.detect.extract.*;
 import boofcv.abst.feature.detect.intensity.GeneralFeatureIntensity;
 import boofcv.alg.feature.detect.extract.*;
 import boofcv.alg.feature.detect.interest.GeneralFeatureDetector;
-import boofcv.alg.feature.detect.selector.FeatureMaxSelector;
+import boofcv.alg.feature.detect.selector.FeatureSelectLimit;
 import boofcv.concurrency.BoofConcurrency;
 import boofcv.struct.image.ImageGray;
 
@@ -49,7 +49,7 @@ public class FactoryFeatureExtractor {
 	public static <I extends ImageGray<I>, D extends ImageGray<D>>
 	GeneralFeatureDetector<I, D> general(GeneralFeatureIntensity<I, D> intensity,
 										 NonMaxSuppression extractor,
-										 FeatureMaxSelector selector,
+										 FeatureSelectLimit selector,
 										 int maxFeatures ) {
 		GeneralFeatureDetector<I, D> det = new GeneralFeatureDetector<>(intensity, extractor, selector);
 		det.setMaxFeatures(maxFeatures);

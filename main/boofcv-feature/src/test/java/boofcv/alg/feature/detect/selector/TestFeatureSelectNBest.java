@@ -27,11 +27,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * @author Peter Abeles
  */
-class TestSelectNBestFeatures extends ChecksFeatureMaxSelector {
+class TestFeatureSelectNBest extends ChecksFeatureSelectLimit {
 
 	@Override
-	public SelectNBestFeatures createAlgorithm() {
-		return new SelectNBestFeatures();
+	public FeatureSelectNBest createAlgorithm() {
+		return new FeatureSelectNBest();
 	}
 
 	/**
@@ -52,7 +52,7 @@ class TestSelectNBestFeatures extends ChecksFeatureMaxSelector {
 		detected.add(8,8);
 
 		QueueCorner found = new QueueCorner();
-		SelectNBestFeatures alg = new SelectNBestFeatures();
+		FeatureSelectNBest alg = new FeatureSelectNBest();
 		alg.select(intensity,true,null,detected,20, found);
 
 		assertEquals(4,found.size);

@@ -22,40 +22,32 @@ import boofcv.struct.QueueCorner;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 /**
  * @author Peter Abeles
  */
-class TestSelectRandomFeatures extends ChecksFeatureMaxSelector {
-
+class TestFeatureSelectFirst extends ChecksFeatureSelectLimit {
 	@Override
-	public SelectRandomFeatures createAlgorithm() {
-		return new SelectRandomFeatures(0xFEED);
+	public FeatureSelectFirst createAlgorithm() {
+		return new FeatureSelectFirst();
 	}
 
 	/**
-	 * Makes sure the order changes between calls
+	 * The order should not change
 	 */
 	@Test
-	void checkOrderChanges() {
+	void checkOrder() {
 		QueueCorner detected = createRandom(15);
 
-		SelectRandomFeatures alg = createAlgorithm();
-		QueueCorner foundA = new QueueCorner();
-		alg.select(intensity,true,null,detected,10,foundA);
-		QueueCorner foundB = new QueueCorner();
-		alg.select(intensity,true,null,detected,10,foundB);
+		QueueCorner found = new QueueCorner();
+		FeatureSelectFirst alg = createAlgorithm();
+		alg.select(intensity,true,null,detected,10,found);
 
-		assertEquals(10,foundA.size);
-		assertEquals(10,foundB.size);
-		boolean different = false;
-		for (int i = 0; i < foundA.size; i++) {
-			if( !foundA.get(i).equals(foundB.get(i))) {
-				different = true;
-				break;
-			}
+		assertEquals(10,found.size);
+		for (int i = 0; i < found.size; i++) {
+			assertNotSame(found.get(i), detected.get(i));
+			assertEquals(found.get(i), detected.get(i));
 		}
-		assertTrue(different);
 	}
 }

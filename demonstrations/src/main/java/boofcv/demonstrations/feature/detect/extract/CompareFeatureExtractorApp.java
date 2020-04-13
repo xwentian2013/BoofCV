@@ -24,8 +24,8 @@ import boofcv.abst.feature.detect.intensity.GeneralFeatureIntensity;
 import boofcv.abst.filter.derivative.AnyImageDerivative;
 import boofcv.alg.feature.detect.intensity.HessianBlobIntensity;
 import boofcv.alg.feature.detect.interest.GeneralFeatureDetector;
-import boofcv.alg.feature.detect.selector.FeatureMaxSelector;
-import boofcv.alg.feature.detect.selector.SelectNBestFeatures;
+import boofcv.alg.feature.detect.selector.FeatureSelectLimit;
+import boofcv.alg.feature.detect.selector.FeatureSelectNBest;
 import boofcv.alg.filter.derivative.DerivativeType;
 import boofcv.alg.filter.derivative.GImageDerivativeOps;
 import boofcv.alg.misc.ImageStatistics;
@@ -163,7 +163,7 @@ public class CompareFeatureExtractorApp<T extends ImageGray<T>, D extends ImageG
 		float max = ImageStatistics.maxAbs(intensity);
 		float threshold = max * thresholdFraction;
 
-		FeatureMaxSelector selector = new SelectNBestFeatures();
+		FeatureSelectLimit selector = new FeatureSelectNBest();
 
 		NonMaxSuppression extractor =
 				FactoryFeatureExtractor.nonmax(new ConfigExtract(minSeparation, threshold, radius, true));

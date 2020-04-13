@@ -31,9 +31,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 /**
- * Generic tests that applied to all {@link FeatureMaxSelector}.
+ * Generic tests that applied to all {@link FeatureSelectLimit}.
  */
-public abstract class ChecksFeatureMaxSelector {
+public abstract class ChecksFeatureSelectLimit {
 
 	Random rand = BoofTesting.createRandom(0);
 
@@ -41,7 +41,7 @@ public abstract class ChecksFeatureMaxSelector {
 	int height=20;
 	GrayF32 intensity = new GrayF32(width,height);
 
-	public abstract FeatureMaxSelector createAlgorithm();
+	public abstract FeatureSelectLimit createAlgorithm();
 
 	@BeforeEach
 	public void setup() {
@@ -55,7 +55,7 @@ public abstract class ChecksFeatureMaxSelector {
 	void lessThanMax_and_SelectedCleared() {
 		QueueCorner detected = createRandom(15);
 
-		FeatureMaxSelector alg = createAlgorithm();
+		FeatureSelectLimit alg = createAlgorithm();
 		QueueCorner found = new QueueCorner();
 
 		for (int count = 0; count < 2; count++) {
@@ -81,7 +81,7 @@ public abstract class ChecksFeatureMaxSelector {
 		QueueCorner prior = createRandom(20);
 		QueueCorner detected = createRandom(30);
 
-		FeatureMaxSelector alg = createAlgorithm();
+		FeatureSelectLimit alg = createAlgorithm();
 		QueueCorner found = new QueueCorner();
 
 		for (int count = 0; count < 2; count++) {
@@ -105,7 +105,7 @@ public abstract class ChecksFeatureMaxSelector {
 	@Test
 	void priorIsBlowUp() {
 		QueueCorner prior = createRandom(20);
-		FeatureMaxSelector alg = createAlgorithm();
+		FeatureSelectLimit alg = createAlgorithm();
 		QueueCorner found = new QueueCorner();
 
 		alg.select(intensity,true,prior,createRandom(15),30,found);

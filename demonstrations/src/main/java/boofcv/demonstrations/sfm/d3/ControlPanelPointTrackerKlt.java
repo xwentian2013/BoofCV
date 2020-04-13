@@ -21,7 +21,7 @@ package boofcv.demonstrations.sfm.d3;
 import boofcv.abst.feature.detect.interest.ConfigGeneralDetector;
 import boofcv.abst.tracker.PointTracker;
 import boofcv.alg.tracker.klt.ConfigPKlt;
-import boofcv.factory.feature.detect.selector.MaxSelectorTypes;
+import boofcv.factory.feature.detect.selector.SelectLimitTypes;
 import boofcv.factory.tracker.FactoryPointTracker;
 import boofcv.gui.StandardAlgConfigPanel;
 import boofcv.struct.image.ImageBase;
@@ -81,7 +81,7 @@ public class ControlPanelPointTrackerKlt extends StandardAlgConfigPanel {
 			spinnerDetectMax = spinner(configDetector.maxFeatures, -1, 10000, 10);
 			spinnerDetectThresh = spinner(Math.sqrt(configDetector.threshold), 0.0, 999.0, 1.0);
 			spinnerDetectRadius = spinner(configDetector.radius, 1, 500, 1);
-			comboDetectSelector = combo(configDetector.maxSelector.type.ordinal(), MaxSelectorTypes.values());
+			comboDetectSelector = combo(configDetector.maxSelector.type.ordinal(), SelectLimitTypes.values());
 		} else {
 			spinnerDetectMax = null;
 			spinnerDetectThresh = null;
@@ -129,7 +129,7 @@ public class ControlPanelPointTrackerKlt extends StandardAlgConfigPanel {
 		} else if( source == spinnerDetectRadius) {
 			configDetector.radius = ((Number) spinnerDetectRadius.getValue()).intValue();
 		} else if( source == comboDetectSelector) {
-			configDetector.maxSelector.type = MaxSelectorTypes.values()[comboDetectSelector.getSelectedIndex()];
+			configDetector.maxSelector.type = SelectLimitTypes.values()[comboDetectSelector.getSelectedIndex()];
 		} else if( source == spinnerForwardsBackwards ) {
 			configKlt.toleranceFB = ((Number) spinnerForwardsBackwards.getValue()).doubleValue();
 		} else if( source == spinnerIterations ) {

@@ -31,7 +31,7 @@ import javax.annotation.Nullable;
  *
  * @author Peter Abeles
  */
-public interface FeatureMaxSelector {
+public interface FeatureSelectLimit {
 	/**
 	 * Selects features using a rule given the limit on detection objects. If the limit is higher than the number
 	 * of detected features and prior is null then the detected features should be copied into selected. How
